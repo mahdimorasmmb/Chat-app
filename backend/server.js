@@ -1,6 +1,9 @@
 const express = require("express");
 const chats = require("./data/data");
+const dotenv = require("dotenv");
 const app = express();
+
+dotenv.config();
 
 app.get("/", (req, res) => {
   res.send("API Ok");
@@ -15,6 +18,8 @@ app.get("/api/chat/:id", (req, res) => {
   res.send(singleChat);
 });
 
-app.listen(5000, () => {
-  console.log("server Stated om Port");
+const PORT = process.env.PORT || 4000;
+
+app.listen(PORT, () => {
+  console.log(`server Stated om ${PORT}`);
 });
