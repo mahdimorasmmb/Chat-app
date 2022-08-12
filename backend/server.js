@@ -5,7 +5,7 @@ const app = express();
 
 dotenv.config();
 
-app.get("/", (req, res) => {
+app.get("/api", (req, res) => {
   res.send("API Ok");
 });
 
