@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useLayoutEffect } from "react";
 import {
   Container,
   Box,
@@ -11,11 +11,19 @@ import {
 } from "@chakra-ui/react";
 import Login from "../components/Authentication/Login";
 import Signup from "../components/Authentication/Signup";
+import { useHistory } from "react-router-dom";
+import { ChatState } from "../context/ChatProvider";
 function HomePage() {
+  const history = useHistory();
+  const { user } = ChatState();
+
+  useLayoutEffect(() => {
+    if (user) history.push("/chats");
+  }, [user]);
   return (
     <Container maxW="xl" centerContent>
       <Box
-        d="flex"
+        display="flex"
         justifyContent="center"
         p={3}
         bg="white"
@@ -25,7 +33,7 @@ function HomePage() {
         borderWidth="1px"
       >
         <Text fontSize="4xl" textAlign="center" fontFamily="work sans">
-          Talk-A-Tive
+          Moras Chat
         </Text>
       </Box>
       <Box bg="white" w="100%" p={4} borderRadius="lg" borderWidth="1px">
