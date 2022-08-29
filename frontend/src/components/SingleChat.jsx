@@ -32,7 +32,15 @@ const SingleChat = () => {
   const [typing, setTyping] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
 
-  const { user, selectedChat, setSelectedChat } = ChatState();
+  const {
+    user,
+    selectedChat,
+    setSelectedChat,
+    notification,
+    setNotification,
+    setFetchAgain,
+    fetchAgain,
+  } = ChatState();
   const toast = useToast();
 
   const defaultOption = {
@@ -164,7 +172,10 @@ const SingleChat = () => {
         !selectedChatComoare ||
         selectedChatComoare._id !== newMessageRecieved.chat._id
       ) {
-        //give note
+        if (!notification.includes(newMessageRecieved)) {
+          setNotification([newMessageRecieved, ...notification]);
+          setFetchAgain(!fetchAgain);
+        }
       } else {
         setMessages([...messages, newMessageRecieved]);
       }

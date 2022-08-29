@@ -23,6 +23,7 @@ const ChatProvider = ({ children }) => {
   );
   const [selectedChat, setSelectedChat] = useState(null);
   const [chats, setChats] = useState([]);
+  const [notification, setNotification] = useState([]);
 
   const logout = () => {
     localStorage.removeItem("userInfo");
@@ -72,6 +73,8 @@ const ChatProvider = ({ children }) => {
         setChats,
         fetchAgain,
         setFetchAgain,
+        notification,
+        setNotification,
       }}
     >
       {children}
